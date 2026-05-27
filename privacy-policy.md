@@ -61,4 +61,4 @@ GitMD はいかなる個人情報も第三者に提供・販売しません。
 
 ## 5. お問い合わせ
 
-プライバシーに関するご質問は、GitHub の [Issues](https://github.com/ymatsuza1128/github-markdown/issues) またはリポジトリ記載のメールアドレスまでご連絡ください。
+プライバシーに関するご質問は、メール（<ymatsuza.tech@gmail.com>）または[テスター向け Google グループ](https://groups.google.com/g/gitmd-testers)までご連絡ください。

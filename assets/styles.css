@@ -102,11 +102,40 @@ a:hover { color: var(--accent-hover); text-decoration: underline; }
   color: var(--fg);
 }
 .btn.ghost:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
-.lang {
-  margin-top: 20px;
-  font-size: 0.95rem;
-  color: var(--muted);
+/* ---------- Language switch ---------- */
+.lang-switch {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 100;
+  display: flex;
+  gap: 4px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 999px;
+  padding: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
+.lang-switch button {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 5px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  line-height: 1;
+}
+.lang-switch button:hover { color: var(--fg); }
+.lang-switch button.active {
+  background: var(--accent);
+  color: #fff;
+}
+
+.lang-content { display: none; }
+html[data-lang="ja"] .lang-content[lang="ja"] { display: block; }
+html[data-lang="en"] .lang-content[lang="en"] { display: block; }
 
 /* ---------- Sections ---------- */
 section {
