@@ -4,15 +4,15 @@
 <meta charset="utf-8" />
 <title>GitMD — あなたのノート、あなたのリポジトリ、あなたのルール</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="GitMD は、任意の Git リポジトリをストレージとして使える Android 向け Markdown ノートアプリです。Git・Google Drive・Dropbox・Box・端末ローカルから選べ、ノートを特定サービスに抱え込まれることがありません。" />
+<meta name="description" content="GitMD は、任意の Git リポジトリをストレージとして使える Android・デスクトップ対応の Markdown ノートアプリです。Git・Google Drive・Dropbox・Box・端末ローカルから選べ、ノートを特定サービスに抱え込まれることがありません。" />
 <meta property="og:title" content="GitMD" />
-<meta property="og:description" content="Android 向け Markdown ノートアプリ。Git・Drive・Dropbox・Box・端末ローカルに対応。" />
+<meta property="og:description" content="Android・デスクトップ対応の Markdown ノートアプリ。Git・Drive・Dropbox・Box・端末ローカルに対応。" />
 <meta property="og:image" content="https://ymatsuza1128.github.io/gitnote-pages/images/feature-graphic-1024x500.png" />
 <meta property="og:url" content="https://ymatsuza1128.github.io/gitnote-pages/" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="GitMD" />
-<meta name="twitter:description" content="Android 向け Markdown ノートアプリ。Git・Drive・Dropbox・Box・端末ローカルに対応。" />
+<meta name="twitter:description" content="Android・デスクトップ対応の Markdown ノートアプリ。Git・Drive・Dropbox・Box・端末ローカルに対応。" />
 <meta name="twitter:image" content="https://ymatsuza1128.github.io/gitnote-pages/images/feature-graphic-1024x500.png" />
 <link rel="icon" type="image/png" href="images/playstore-icon-512.png" />
 <link rel="stylesheet" href="assets/styles.css" />
@@ -43,8 +43,11 @@
     <img class="logo" src="images/playstore-icon-512.png" alt="GitMD アプリアイコン" />
     <h1>GitMD</h1>
     <p class="tagline">あなたのノート。あなたのリポジトリ。あなたのルール。</p>
+    <p class="platforms" aria-label="対応プラットフォーム">
+      <span>Android</span><span>Linux</span><span>macOS</span><span>Windows</span>
+    </p>
     <p class="lede">
-      Android 向けの Markdown ノートアプリ。ノートはプレーンな <code>.md</code> ファイルとして、
+      Android とデスクトップ（Linux / macOS / Windows）両対応の Markdown ノートアプリ。ノートはプレーンな <code>.md</code> ファイルとして、
       <strong>あなたが選んだ場所</strong>&mdash; Git リポジトリ、Google Drive、Dropbox、Box、または端末ローカル &mdash; に保存されます。
       ベンダーロックインなし。あなたが管理できないクラウドもありません。
     </p>
@@ -89,11 +92,16 @@
 <section class="screenshots">
   <div class="container">
     <h2>画面イメージ</h2>
+    <h3 class="shot-group">モバイル（Android）</h3>
     <div class="gallery">
       <img src="images/screenshot1.png" alt="ノート一覧画面" />
       <img src="images/screenshot2.png" alt="エディタ画面" />
       <img src="images/screenshot3.png" alt="WikiLink 付きプレビュー" />
       <img src="images/screenshot4.png" alt="設定画面" />
+    </div>
+    <h3 class="shot-group">デスクトップ（Linux / macOS / Windows）</h3>
+    <div class="gallery gallery-desktop">
+      <div class="shot-placeholder">デスクトップ版スクリーンショットは近日追加予定</div>
     </div>
   </div>
 </section>
@@ -126,8 +134,27 @@
 <section id="download-ja" class="download">
   <div class="container">
     <h2>ダウンロード</h2>
-    <p>GitMD は Google Play でクローズドテスト中です。テスター参加をご希望の方は <a href="mailto:ymatsuza.tech@gmail.com?subject=GitMD%20テスター希望">ymatsuza.tech@gmail.com</a> までご連絡ください。</p>
-    <p>デスクトップ版（Linux / macOS / Windows）も開発中です。</p>
+    <div class="dl-grid">
+      <div class="dl-card">
+        <h3>Android</h3>
+        <p>Google Play でクローズドテスト中です。テスター参加をご希望の方は <a href="mailto:ymatsuza.tech@gmail.com?subject=GitMD%20テスター希望">ymatsuza.tech@gmail.com</a> までご連絡ください。</p>
+      </div>
+      <div class="dl-card">
+        <h3>デスクトップ（PC）</h3>
+        <p>Linux / macOS / Windows 版を<strong>近日公開予定</strong>です。先行ベータをご希望の方は <a href="mailto:ymatsuza.tech@gmail.com?subject=GitMD%20デスクトップ版%20先行ベータ希望">ymatsuza.tech@gmail.com</a> までご連絡ください。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="donate">
+  <div class="container">
+    <h2>開発を支援する</h2>
+    <p>GitMD は個人開発の無料アプリです。気に入っていただけたらサポートをいただけると励みになります。</p>
+    <p style="margin-top:20px;">
+      <a class="btn primary" href="https://github.com/sponsors/ymatsuza1128">GitHub Sponsors</a>
+      <a class="btn ghost" href="https://paypal.me/ymatsuza">PayPal</a>
+    </p>
   </div>
 </section>
 
@@ -167,8 +194,11 @@
     <img class="logo" src="images/playstore-icon-512.png" alt="GitMD app icon" />
     <h1>GitMD</h1>
     <p class="tagline">Your notes. Your repo. Your rules.</p>
+    <p class="platforms" aria-label="Supported platforms">
+      <span>Android</span><span>Linux</span><span>macOS</span><span>Windows</span>
+    </p>
     <p class="lede">
-      A Markdown notes app for Android. Notes live as plain <code>.md</code> files in
+      A Markdown notes app for Android and desktop (Linux / macOS / Windows). Notes live as plain <code>.md</code> files in
       <strong>your</strong> Git repository &mdash; or Google Drive, Dropbox, Box, or just your filesystem.
       No vendor lock-in. No cloud you don&rsquo;t control.
     </p>
@@ -213,11 +243,16 @@
 <section class="screenshots">
   <div class="container">
     <h2>What it looks like</h2>
+    <h3 class="shot-group">Mobile (Android)</h3>
     <div class="gallery">
       <img src="images/screenshot1.png" alt="Notes list screen" />
       <img src="images/screenshot2.png" alt="Editor screen" />
       <img src="images/screenshot3.png" alt="Preview with wiki links" />
       <img src="images/screenshot4.png" alt="Settings" />
+    </div>
+    <h3 class="shot-group">Desktop (Linux / macOS / Windows)</h3>
+    <div class="gallery gallery-desktop">
+      <div class="shot-placeholder">Desktop screenshots coming soon</div>
     </div>
   </div>
 </section>
@@ -250,8 +285,27 @@
 <section id="download-en" class="download">
   <div class="container">
     <h2>Download</h2>
-    <p>GitMD is in closed testing on Google Play. Email <a href="mailto:ymatsuza.tech@gmail.com?subject=GitMD%20closed%20test">ymatsuza.tech@gmail.com</a> to request tester access.</p>
-    <p>A desktop version (Linux / macOS / Windows) is in development.</p>
+    <div class="dl-grid">
+      <div class="dl-card">
+        <h3>Android</h3>
+        <p>GitMD is in closed testing on Google Play. Email <a href="mailto:ymatsuza.tech@gmail.com?subject=GitMD%20closed%20test">ymatsuza.tech@gmail.com</a> to request tester access.</p>
+      </div>
+      <div class="dl-card">
+        <h3>Desktop (PC)</h3>
+        <p>Linux / macOS / Windows builds are <strong>coming soon</strong>. Email <a href="mailto:ymatsuza.tech@gmail.com?subject=GitMD%20desktop%20beta">ymatsuza.tech@gmail.com</a> to request early beta access.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="donate">
+  <div class="container">
+    <h2>Support development</h2>
+    <p>GitMD is a free, indie-built app. Sponsorships are greatly appreciated and help keep development going.</p>
+    <p style="margin-top:20px;">
+      <a class="btn primary" href="https://github.com/sponsors/ymatsuza1128">GitHub Sponsors</a>
+      <a class="btn ghost" href="https://paypal.me/ymatsuza">PayPal</a>
+    </p>
   </div>
 </section>
 

@@ -53,6 +53,7 @@
         <tr><td>リポジトリ URL・ブランチ名・認証種別</td><td>クローン・同期先の特定</td><td>端末内（DataStore）</td></tr>
         <tr><td>Git コミット用の著者名・メールアドレス</td><td>コミットメタデータへの記録</td><td>端末内（DataStore）</td></tr>
         <tr><td>Markdown ファイル</td><td>ノートの表示・編集</td><td>端末内（アプリ専用ストレージ）</td></tr>
+        <tr><td>ノート暗号化キー（設定で有効にした場合のみ）</td><td>ノート本文の End-to-End 暗号化</td><td>端末内（Android Keystore で保護）。ノートはリモートに暗号文のみ保存、平文は端末外に出ない</td></tr>
         <tr><td>お気に入り / 最近開いたノートのパス</td><td>UI 状態の保持</td><td>端末内（DataStore）</td></tr>
       </tbody>
     </table>
@@ -143,6 +144,7 @@
         <tr><td>Repository URL, branch name, auth type</td><td>Identifying the clone / sync target</td><td>On device (DataStore)</td></tr>
         <tr><td>Author name &amp; email for Git commits</td><td>Recording commit metadata</td><td>On device (DataStore)</td></tr>
         <tr><td>Markdown files</td><td>Displaying and editing notes</td><td>On device (app-private storage)</td></tr>
+        <tr><td>Note encryption key (only when enabled in settings)</td><td>End-to-end encryption of note content</td><td>On device (protected by Android Keystore). Only ciphertext is stored remotely — plaintext never leaves the device</td></tr>
         <tr><td>Favorite / recently opened note paths</td><td>Preserving UI state</td><td>On device (DataStore)</td></tr>
       </tbody>
     </table>
