@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#0a0a0c" />
+  <title>感染拡大クリッカー</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="game">
+    <!-- HUD -->
+    <header id="hud">
+      <div class="hud-top">
+        <span id="host-label">HOST · 肺</span>
+        <span class="hud-right">
+          <span id="stage-label">STAGE 1 · 臓器</span>
+          <button id="lab-btn" class="icon-btn" aria-label="研究ラボ">🧪</button>
+          <button id="ach-btn" class="icon-btn" aria-label="実績">🏆<span id="ach-count">0/0</span></button>
+          <button id="mute-btn" class="icon-btn" aria-label="サウンド切替">🔊</button>
+          <button id="settings-btn" class="icon-btn" aria-label="設定">⚙️</button>
+        </span>
+      </div>
+      <div class="hud-count">
+        <span id="balance">0</span>
+        <span id="rate">+0/s</span>
+      </div>
+      <div class="hud-sub">感染細胞数</div>
+    </header>
+
+    <div id="ticker" aria-live="polite"></div>
+
+    <!-- STAGE -->
+    <main id="stage">
+      <div id="stage-bg" aria-hidden="true"></div>
+      <div id="strains" aria-label="ウイルス株"></div>
+      <div id="floats" aria-hidden="true"></div>
+      <div id="tap-hint">👆 タップして増殖</div>
+      <button id="golden" class="hidden" aria-label="ゴールデンウイルス">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <filter id="gglow" x="-60%" y="-60%" width="220%" height="220%">
+              <feGaussianBlur stdDeviation="2.5" result="b" /><feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+            </filter>
+          </defs>
+          <g transform="translate(50,50)" filter="url(#gglow)">
+            <g stroke="#ffe98a" stroke-width="3" stroke-linecap="round">
+              <g transform="rotate(0)"><line y1="-25" y2="-37" /><circle cy="-40" r="4" fill="#ffe98a" stroke="none" /></g>
+              <g transform="rotate(45)"><line y1="-25" y2="-37" /><circle cy="-40" r="4" fill="#ffe98a" stroke="none" /></g>
+              <g transform="rotate(90)"><line y1="-25" y2="-37" /><circle cy="-40" r="4" fill="#ffe98a" stroke="none" /></g>
+              <g transform="rotate(135)"><line y1="-25" y2="-37" /><circle cy="-40" r="4" fill="#ffe98a" stroke="none" /></g>
+              <g transform="rotate(180)"><line y1="-25" y2="-37" /><circle cy="-40" r="4" fill="#ffe98a" stroke="none" /></g>
+              <g transform="rotate(225)"><line y1="-25" y2="-37" /><circle cy="-40" r="4" fill="#ffe98a" stroke="none" /></g>
+              <g transform="rotate(270)"><line y1="-25" y2="-37" /><circle cy="-40" r="4" fill="#ffe98a" stroke="none" /></g>
+              <g transform="rotate(315)"><line y1="-25" y2="-37" /><circle cy="-40" r="4" fill="#ffe98a" stroke="none" /></g>
+            </g>
+            <circle r="25" fill="#ffcf3f" stroke="#ffe98a" stroke-width="3" />
+            <circle cx="-7" cy="-5" r="4" fill="#e0a91e" /><circle cx="8" cy="5" r="5" fill="#e0a91e" />
+          </g>
+        </svg>
+      </button>
+    </main>
+
+    <!-- PROGRESS -->
+    <section id="progress">
+      <div class="progress-row">
+        <span id="prog-label">肺 感染度</span>
+        <span id="prog-next">0% → 全身へ 🔍</span>
+      </div>
+      <div class="bar"><div id="prog-fill"></div></div>
+    </section>
+
+    <!-- OUTBREAK -->
+    <section id="outbreak">
+      <button id="outbreak-btn" disabled>
+        <span id="outbreak-fill"></span>
+        <span id="outbreak-label">アウトブレイク 0%</span>
+      </button>
+    </section>
+
+    <!-- PRESTIGE (mutation / NG+) -->
+    <section id="prestige">
+      <button id="prestige-btn" disabled><span id="prestige-label">変異</span></button>
+      <div id="prestige-info"></div>
+      <button id="dnalab-btn">🧬 DNA研究所</button>
+    </section>
+
+    <!-- REWARDED AD -->
+    <section id="ads">
+      <button id="ad-btn">📺 広告を見て 生産×3（90秒）</button>
+    </section>
+
+    <!-- UPGRADES -->
+    <section id="upgrades">
+      <div class="section-label">変異 / 強化</div>
+      <div id="upgrade-list"></div>
+      <button id="reset-btn">進行をリセット</button>
+    </section>
+
+    <div id="ad-banner"><span>広告 — Advertisement</span></div>
+
+    <!-- overlays -->
+    <div id="toast" class="hidden"></div>
+    <div id="ach-overlay" class="hidden">
+      <div class="ach-card">
+        <h2>🏆 実績</h2>
+        <div id="ach-list"></div>
+        <button id="ach-close">閉じる</button>
+      </div>
+    </div>
+
+    <div id="lab-overlay" class="hidden">
+      <div class="ach-card">
+        <h2>🧪 研究ラボ</h2>
+        <div id="lab-list"></div>
+        <button id="lab-close">閉じる</button>
+      </div>
+    </div>
+
+    <div id="dnalab-overlay" class="hidden">
+      <div class="ach-card">
+        <h2>🧬 DNA研究所</h2>
+        <div id="dnalab-dna" class="set-label"></div>
+        <p class="set-hint">変異株(DNA)で恒久パークを購入。変異しても永続します。</p>
+        <div id="dnalab-list"></div>
+        <button id="dnalab-close">閉じる</button>
+      </div>
+    </div>
+
+    <div id="settings-overlay" class="hidden">
+      <div class="ach-card">
+        <h2>⚙️ 設定</h2>
+        <div class="set-label">統計</div>
+        <div id="set-stats"></div>
+        <div class="set-label" style="margin-top:14px">セーブのバックアップ</div>
+        <p class="set-hint">コードをコピーして保管すれば、いつでも復元できます（端末の移行にも）。</p>
+        <button id="set-export" class="lab-act">エクスポート（コードをコピー）</button>
+        <textarea id="set-code" placeholder="ここにコードを貼り付けて読み込み"></textarea>
+        <button id="set-import" class="lab-act synth">このコードを読み込む</button>
+        <div id="set-msg"></div>
+        <button id="set-close">閉じる</button>
+      </div>
+    </div>
+    <div id="clear-overlay" class="hidden">
+      <div class="clear-card">
+        <div class="clear-emoji">🌌☠️</div>
+        <h1>マルチバース制圧</h1>
+        <p id="clear-stats"></p>
+        <button id="clear-continue">エンドレスを続ける</button>
+      </div>
+    </div>
+
+    <div id="ad-overlay" class="hidden">
+      <div class="ad-card">
+        <div class="ad-fake">📺</div>
+        <div class="ad-sub">スポンサー広告</div>
+        <div id="ad-countdown">3</div>
+        <div class="ad-note">視聴完了で 生産×3 ブースト</div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
