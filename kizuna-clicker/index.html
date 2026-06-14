@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>きずなクリッカー</title>
+  <link rel="stylesheet" href="src/style.css" />
+</head>
+<body>
+  <header id="hud">
+    <div class="hud-item"><span class="hud-label">ハート</span><span id="hud-hearts">0</span></div>
+    <div class="hud-item"><span class="hud-label">毎秒</span><span id="hud-rate">0</span></div>
+    <div class="hud-item"><span class="hud-label">タップ力</span><span id="hud-tap">1</span></div>
+  </header>
+
+  <main id="stage" aria-label="プレイエリア"></main>
+
+  <button id="btn-reward" class="reward-btn" type="button">📺 ハート2倍</button>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <section id="shop">
+    <button id="btn-unlock" class="shop-btn" type="button">
+      <span class="shop-title">人を増やす</span>
+      <span class="shop-cost" id="cost-unlock">50</span>
+    </button>
+    <button id="btn-tap" class="shop-btn" type="button">
+      <span class="shop-title">タップ力↑</span>
+      <span class="shop-cost" id="cost-tap">100</span>
+    </button>
+    <button id="btn-passive" class="shop-btn" type="button">
+      <span class="shop-title">自動生成↑</span>
+      <span class="shop-cost" id="cost-passive">200</span>
+    </button>
+  </section>
+
+  <div id="offline-popup" class="hidden" role="dialog" aria-modal="true">
+    <div class="popup-card">
+      <p>おかえりなさい!</p>
+      <p>留守中に <strong id="offline-amount">0</strong> ハート 貯まりました</p>
+      <button id="offline-close" type="button">受け取る</button>
+    </div>
+  </div>
+
+  <div id="profile-panel" class="hidden" role="dialog" aria-modal="true">
+    <div class="profile-card">
+      <button id="profile-close" class="profile-close" type="button" aria-label="閉じる">×</button>
+      <div id="profile-avatar" class="profile-avatar"></div>
+      <input id="profile-name" class="profile-name" type="text" maxlength="12" aria-label="なまえ" />
+      <div class="profile-kizuna"><span id="profile-lv">Lv.0</span> ・ 関係値 <span id="profile-aff">0</span></div>
+      <div class="editor">
+        <div class="editor-row" data-part="hue"><button class="ed-prev" type="button" aria-label="前へ">◀</button><span class="ed-name">いろ</span><button class="ed-next" type="button" aria-label="次へ">▶</button></div>
+        <div class="editor-row" data-part="eyes"><button class="ed-prev" type="button" aria-label="前へ">◀</button><span class="ed-name">め</span><button class="ed-next" type="button" aria-label="次へ">▶</button></div>
+        <div class="editor-row" data-part="mouth"><button class="ed-prev" type="button" aria-label="前へ">◀</button><span class="ed-name">くち</span><button class="ed-next" type="button" aria-label="次へ">▶</button></div>
+        <div class="editor-row" data-part="top"><button class="ed-prev" type="button" aria-label="前へ">◀</button><span class="ed-name">あたま</span><button class="ed-next" type="button" aria-label="次へ">▶</button></div>
+      </div>
+      <div class="profile-story-wrap">
+        <div class="profile-story-title">できごと</div>
+        <div id="profile-story" class="profile-story"></div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="src/game.js"></script>
+</body>
+</html>
