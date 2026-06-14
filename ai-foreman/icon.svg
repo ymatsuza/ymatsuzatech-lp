@@ -1,4 +1,4 @@
-<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="再帰工場 / Recursion Factory">
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AI工場長 / AI Foreman">
   <rect width="512" height="512" rx="115" fill="#15131c"/>
   <!-- recursion arc curving up to the singularity spark -->
   <path d="M132 318 Q205 96 392 150" fill="none" stroke="#534ab7" stroke-width="24" stroke-linecap="round"/>

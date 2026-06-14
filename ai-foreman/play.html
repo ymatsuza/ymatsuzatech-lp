@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>再帰工場 / Recursion Factory</title>
+<title>AI工場長 / AI Foreman</title>
 <style>
   :root{
     --bg:#15131c; --panel:#1e1b29; --panel2:#26222f; --line:#332e44;
@@ -125,7 +125,7 @@
 <body>
 <div class="wrap">
   <header>
-    <h1>再帰工場<span class="en">Recursion Factory</span></h1>
+    <h1>AI工場長<span class="en">AI Foreman</span></h1>
     <span class="tag">— AIを製造する工場が、やがて自分自身を作り変えはじめる</span>
     <span class="role" id="roleBadge" title="あなたの肩書き">あなた: 工場長</span>
   </header>
@@ -665,7 +665,7 @@ function render(){
 }
 
 // ---- save/load ----
-const KEY="recursion-factory-v1";
+const KEY="ai-foreman-v1";
 function save(){ try{ localStorage.setItem(KEY, JSON.stringify({s,logs,savedAt:Date.now()}));
   document.getElementById("saved").textContent="保存済み "+new Date().toLocaleTimeString(); }catch(e){} }
 function load(){ try{ const r=JSON.parse(localStorage.getItem(KEY)); if(r&&r.s){ s=Object.assign(defaults(),r.s); logs=r.logs||[];
