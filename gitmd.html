@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="ja" data-lang="ja">
+<head>
+<meta charset="utf-8" />
+<title>GitMD — あなたのノート、あなたのリポジトリ、あなたのルール</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="GitMD は、任意の Git リポジトリをストレージとして使える Android・デスクトップ対応の Markdown ノートアプリです。Git・Google Drive・Dropbox・Box・端末ローカルから選べ、ノートを特定サービスに抱え込まれることがありません。" />
+<meta property="og:title" content="GitMD" />
+<meta property="og:description" content="Android・デスクトップ対応の Markdown ノートアプリ。Git・Drive・Dropbox・Box・端末ローカルに対応。" />
+<meta property="og:image" content="https://ymatsuzatech.com/images/feature-graphic-1024x500.png" />
+<meta property="og:url" content="https://ymatsuzatech.com/gitmd.html" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="GitMD" />
+<meta name="twitter:description" content="Android・デスクトップ対応の Markdown ノートアプリ。Git・Drive・Dropbox・Box・端末ローカルに対応。" />
+<meta name="twitter:image" content="https://ymatsuzatech.com/images/feature-graphic-1024x500.png" />
+<link rel="canonical" href="https://ymatsuzatech.com/gitmd.html" />
+<link rel="icon" type="image/png" href="images/playstore-icon-512.png" />
+<link rel="stylesheet" href="assets/styles.css" />
+<script>
+  (function () {
+    try {
+      var s = localStorage.getItem('gitmd-lang');
+      if (s === 'en' || s === 'ja') {
+        document.documentElement.setAttribute('data-lang', s);
+        document.documentElement.setAttribute('lang', s);
+      }
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+
+<nav class="lang-switch" aria-label="Language / 言語">
+  <button type="button" data-lang="ja">日本語</button>
+  <button type="button" data-lang="en">English</button>
+</nav>
+
+<!-- ===================== 日本語 ===================== -->
+<div class="lang-content" lang="ja">
+
+<header class="hero">
+  <div class="container">
+    <img class="logo" src="images/playstore-icon-512.png" alt="GitMD アプリアイコン" />
+    <h1>GitMD</h1>
+    <p class="tagline">あなたのノート。あなたのリポジトリ。あなたのルール。</p>
+    <p class="platforms" aria-label="対応プラットフォーム">
+      <span>Android</span><span>Linux</span><span>macOS</span><span>Windows</span>
+    </p>
+    <p class="lede">
+      Android とデスクトップ（Linux / macOS / Windows）両対応の Markdown ノートアプリ。ノートはプレーンな <code>.md</code> ファイルとして、
+      <strong>あなたが選んだ場所</strong>&mdash; Git リポジトリ、Google Drive、Dropbox、Box、または端末ローカル &mdash; に保存されます。
+      ベンダーロックインなし。あなたが管理できないクラウドもありません。
+    </p>
+    <p class="cta">
+      <a class="btn primary" href="#download-ja">アプリを入手</a>
+    </p>
+  </div>
+</header>
+
+<section class="features">
+  <div class="container">
+    <h2>GitMD を選ぶ理由</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>いつでもプレーンな Markdown</h3>
+        <p>ノートはディスク上の <code>.md</code> ファイルそのもの。どのエディタでも、いつでも、どの端末でも開けます。専用フォーマットなし、エクスポート作業も不要。</p>
+      </div>
+      <div class="card">
+        <h3>Git がファーストクラスのバックエンド</h3>
+        <p>GitHub・GitLab・Codeberg・Bitbucket・Gitea・セルフホストの任意リポジトリをクローン。commit / push / pull に対応し、フル版履歴が残ります &mdash; それが Git だからです。</p>
+      </div>
+      <div class="card">
+        <h3>すでに信頼しているストレージ</h3>
+        <p>Git を使いたくない？ Google Drive・Dropbox・Box・ローカルのみから選べます。同じノートを、好きな同期方法で。</p>
+      </div>
+      <div class="card">
+        <h3>WikiLink とバックリンク</h3>
+        <p><code>[[ページ名]]</code> リンクがネイティブに動作。タップで移動でき、存在しないページは自動作成。バックリンクパネルで、現在のノートを参照している箇所が分かります。</p>
+      </div>
+      <div class="card">
+        <h3>必要なときだけ AI</h3>
+        <p>Gemini・OpenAI・Anthropic のキーを持ち込んで利用。使わなければ 100% オフラインのまま。キーは端末内で暗号化されます。</p>
+      </div>
+      <div class="card">
+        <h3>ジャーナルモード</h3>
+        <p>ワンタップで <code>journal/YYYY-MM-DD.md</code> を開きます。Android の共有シートから任意のアプリの内容を追記。気負わず日々のノートを。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="screenshots">
+  <div class="container">
+    <h2>画面イメージ</h2>
+    <h3 class="shot-group">モバイル（Android）</h3>
+    <div class="gallery">
+      <img src="images/screenshot1.png" alt="ノート一覧画面" />
+      <img src="images/screenshot2.png" alt="エディタ画面" />
+      <img src="images/screenshot3.png" alt="WikiLink 付きプレビュー" />
+      <img src="images/screenshot4.png" alt="設定画面" />
+    </div>
+    <h3 class="shot-group">デスクトップ（Linux / macOS / Windows）</h3>
+    <div class="gallery gallery-desktop">
+      <div class="shot-placeholder">デスクトップ版スクリーンショットは近日追加予定</div>
+    </div>
+  </div>
+</section>
+
+<section class="backends">
+  <div class="container">
+    <h2>ストレージバックエンド</h2>
+    <ul class="checklist">
+      <li><span class="ok">&#x2714;</span> <strong>Git</strong> &mdash; GitHub OAuth、GitLab OAuth、個人アクセストークン（PAT）、SSH キー。Codeberg / Bitbucket / Gitea / セルフホスト Forgejo はすべて動作確認済み。</li>
+      <li><span class="ok">&#x2714;</span> <strong>端末ローカル</strong> &mdash; SAF ベースのフォルダ。クラウドを一切使いません。</li>
+      <li><span class="ok">&#x2714;</span> <strong>Google Drive</strong> &mdash; OAuth + Drive Picker でフォルダ選択。</li>
+      <li><span class="ok">&#x2714;</span> <strong>Dropbox</strong> &mdash; OAuth でフォルダ選択。</li>
+      <li><span class="ok">&#x2714;</span> <strong>Box</strong> &mdash; OAuth でフォルダ選択。</li>
+    </ul>
+  </div>
+</section>
+
+<section class="ai">
+  <div class="container">
+    <h2>AI プロバイダ（キーは持ち込み）</h2>
+    <ul class="checklist">
+      <li><span class="ok">&#x2714;</span> <strong>Google Gemini</strong> &mdash; <code>gemini-2.5-flash</code></li>
+      <li><span class="ok">&#x2714;</span> <strong>OpenAI</strong> &mdash; <code>gpt-4o-mini</code></li>
+      <li><span class="ok">&#x2714;</span> <strong>Anthropic</strong> &mdash; <code>claude-haiku-4-5</code></li>
+    </ul>
+    <p class="note">キーは Android の <code>EncryptedSharedPreferences</code>（Keystore ベース）で保存されます。AI を完全に無効化することも可能 &mdash; プロバイダ未設定でもアプリは動作します。</p>
+  </div>
+</section>
+
+<section id="download-ja" class="download">
+  <div class="container">
+    <h2>ダウンロード</h2>
+    <div class="dl-grid">
+      <div class="dl-card">
+        <h3>Android</h3>
+        <p>Google Play でクローズドテスト中です。テスター参加をご希望の方は <a href="mailto:ymatsuza.tech@gmail.com?subject=GitMD%20テスター希望">ymatsuza.tech@gmail.com</a> までご連絡ください。</p>
+      </div>
+      <div class="dl-card">
+        <h3>デスクトップ（PC）</h3>
+        <p>Linux / macOS / Windows 版を<strong>近日公開予定</strong>です。先行ベータをご希望の方は <a href="mailto:ymatsuza.tech@gmail.com?subject=GitMD%20デスクトップ版%20先行ベータ希望">ymatsuza.tech@gmail.com</a> までご連絡ください。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="donate">
+  <div class="container">
+    <h2>開発を支援する</h2>
+    <p>GitMD は個人開発の無料アプリです。気に入っていただけたらサポートをいただけると励みになります。</p>
+    <p style="margin-top:20px;">
+      <a class="btn primary" href="https://github.com/sponsors/ymatsuza1128">GitHub Sponsors</a>
+      <a class="btn ghost" href="https://paypal.me/ymatsuza">PayPal</a>
+    </p>
+  </div>
+</section>
+
+<section class="privacy">
+  <div class="container">
+    <h2>プライバシー</h2>
+    <p>
+      あなたのノートが、選んだストレージ（Git リモート / Drive / 端末）の外に出ることはありません。
+      トークンは端末内で暗号化されます。匿名の利用イベントのみ Firebase Analytics に送信されます
+      （個人情報なし、広告 ID なし）。アカウントもプロフィール紐付けもありません。
+    </p>
+    <p>
+      全文: <a href="privacy-policy.html">プライバシーポリシー</a>。
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2026 Yuta Matsuzaki. GitMD はクローズドソースソフトウェアです。本ページは公開ランディングの一部です。</p>
+    <p>
+      <a href="privacy-policy.html">プライバシー</a> &middot;
+      <a href="faq.html">FAQ</a> &middot;
+      <a href="mailto:ymatsuza.tech@gmail.com">お問い合わせ</a>
+    </p>
+  </div>
+</footer>
+
+</div>
+<!-- =================== /日本語 =================== -->
+
+<!-- ===================== English ===================== -->
+<div class="lang-content" lang="en">
+
+<header class="hero">
+  <div class="container">
+    <img class="logo" src="images/playstore-icon-512.png" alt="GitMD app icon" />
+    <h1>GitMD</h1>
+    <p class="tagline">Your notes. Your repo. Your rules.</p>
+    <p class="platforms" aria-label="Supported platforms">
+      <span>Android</span><span>Linux</span><span>macOS</span><span>Windows</span>
+    </p>
+    <p class="lede">
+      A Markdown notes app for Android and desktop (Linux / macOS / Windows). Notes live as plain <code>.md</code> files in
+      <strong>your</strong> Git repository &mdash; or Google Drive, Dropbox, Box, or just your filesystem.
+      No vendor lock-in. No cloud you don&rsquo;t control.
+    </p>
+    <p class="cta">
+      <a class="btn primary" href="#download-en">Get the app</a>
+    </p>
+  </div>
+</header>
+
+<section class="features">
+  <div class="container">
+    <h2>Why GitMD</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Plain Markdown, always</h3>
+        <p>Your notes are <code>.md</code> files on disk. Open them with any editor, any time, on any device. No proprietary format. No export step.</p>
+      </div>
+      <div class="card">
+        <h3>Git is a first-class backend</h3>
+        <p>Clone any GitHub, GitLab, Codeberg, Bitbucket, Gitea, or self-hosted repo. Commit, push, pull. Full version history because that&rsquo;s just how Git works.</p>
+      </div>
+      <div class="card">
+        <h3>Storage you already trust</h3>
+        <p>Don&rsquo;t want Git? Pick Google Drive, Dropbox, Box, or local-only. Same notes, your choice of sync.</p>
+      </div>
+      <div class="card">
+        <h3>Wiki links &amp; backlinks</h3>
+        <p><code>[[Page]]</code> links work natively. Tap to navigate. Missing pages get auto-created. Backlinks panel shows what references the current note.</p>
+      </div>
+      <div class="card">
+        <h3>AI when you want it</h3>
+        <p>Bring your own key for Gemini, OpenAI, or Anthropic. Stay 100% offline if you don&rsquo;t. Your key is encrypted on-device.</p>
+      </div>
+      <div class="card">
+        <h3>Journal mode</h3>
+        <p>One tap opens <code>journal/YYYY-MM-DD.md</code>. Append from any app via the Android share sheet. Daily notes without ceremony.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="screenshots">
+  <div class="container">
+    <h2>What it looks like</h2>
+    <h3 class="shot-group">Mobile (Android)</h3>
+    <div class="gallery">
+      <img src="images/screenshot1.png" alt="Notes list screen" />
+      <img src="images/screenshot2.png" alt="Editor screen" />
+      <img src="images/screenshot3.png" alt="Preview with wiki links" />
+      <img src="images/screenshot4.png" alt="Settings" />
+    </div>
+    <h3 class="shot-group">Desktop (Linux / macOS / Windows)</h3>
+    <div class="gallery gallery-desktop">
+      <div class="shot-placeholder">Desktop screenshots coming soon</div>
+    </div>
+  </div>
+</section>
+
+<section class="backends">
+  <div class="container">
+    <h2>Storage backends</h2>
+    <ul class="checklist">
+      <li><span class="ok">&#x2714;</span> <strong>Git</strong> &mdash; GitHub OAuth, GitLab OAuth, Personal Access Token, SSH key. Codeberg / Bitbucket / Gitea / self-hosted Forgejo all confirmed working.</li>
+      <li><span class="ok">&#x2714;</span> <strong>Local filesystem</strong> &mdash; SAF-backed folder on your device, no cloud at all.</li>
+      <li><span class="ok">&#x2714;</span> <strong>Google Drive</strong> &mdash; OAuth + Drive Picker for folder selection.</li>
+      <li><span class="ok">&#x2714;</span> <strong>Dropbox</strong> &mdash; OAuth folder selection.</li>
+      <li><span class="ok">&#x2714;</span> <strong>Box</strong> &mdash; OAuth folder selection.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="ai">
+  <div class="container">
+    <h2>AI providers (bring your own key)</h2>
+    <ul class="checklist">
+      <li><span class="ok">&#x2714;</span> <strong>Google Gemini</strong> &mdash; <code>gemini-2.5-flash</code></li>
+      <li><span class="ok">&#x2714;</span> <strong>OpenAI</strong> &mdash; <code>gpt-4o-mini</code></li>
+      <li><span class="ok">&#x2714;</span> <strong>Anthropic</strong> &mdash; <code>claude-haiku-4-5</code></li>
+    </ul>
+    <p class="note">Keys are stored with Android <code>EncryptedSharedPreferences</code> (Keystore-backed). Disable AI entirely if you prefer &mdash; the app works without any provider configured.</p>
+  </div>
+</section>
+
+<section id="download-en" class="download">
+  <div class="container">
+    <h2>Download</h2>
+    <div class="dl-grid">
+      <div class="dl-card">
+        <h3>Android</h3>
+        <p>GitMD is in closed testing on Google Play. Email <a href="mailto:ymatsuza.tech@gmail.com?subject=GitMD%20closed%20test">ymatsuza.tech@gmail.com</a> to request tester access.</p>
+      </div>
+      <div class="dl-card">
+        <h3>Desktop (PC)</h3>
+        <p>Linux / macOS / Windows builds are <strong>coming soon</strong>. Email <a href="mailto:ymatsuza.tech@gmail.com?subject=GitMD%20desktop%20beta">ymatsuza.tech@gmail.com</a> to request early beta access.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="donate">
+  <div class="container">
+    <h2>Support development</h2>
+    <p>GitMD is a free, indie-built app. Sponsorships are greatly appreciated and help keep development going.</p>
+    <p style="margin-top:20px;">
+      <a class="btn primary" href="https://github.com/sponsors/ymatsuza1128">GitHub Sponsors</a>
+      <a class="btn ghost" href="https://paypal.me/ymatsuza">PayPal</a>
+    </p>
+  </div>
+</section>
+
+<section class="privacy">
+  <div class="container">
+    <h2>Privacy</h2>
+    <p>
+      Your notes never leave your storage backend (Git remote / Drive / device).
+      Tokens are encrypted on-device. Anonymous usage events are sent to Firebase Analytics
+      (no PII, no advertising ID). No accounts, no profile linking.
+    </p>
+    <p>
+      Full text: <a href="privacy-policy.html">Privacy Policy</a>.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2026 Yuta Matsuzaki. GitMD is closed-source software; this page is part of the public landing.</p>
+    <p>
+      <a href="privacy-policy.html">Privacy</a> &middot;
+      <a href="faq.html">FAQ</a> &middot;
+      <a href="mailto:ymatsuza.tech@gmail.com">Contact</a>
+    </p>
+  </div>
+</footer>
+
+</div>
+<!-- =================== /English =================== -->
+
+<script>
+  (function () {
+    var html = document.documentElement;
+    var btns = Array.prototype.slice.call(document.querySelectorAll('.lang-switch button'));
+    function syncButtons(l) {
+      btns.forEach(function (b) {
+        var on = b.getAttribute('data-lang') === l;
+        b.classList.toggle('active', on);
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+    }
+    function setLang(l) {
+      html.setAttribute('data-lang', l);
+      html.setAttribute('lang', l);
+      syncButtons(l);
+      try { localStorage.setItem('gitmd-lang', l); } catch (e) {}
+    }
+    btns.forEach(function (b) {
+      b.addEventListener('click', function () { setLang(b.getAttribute('data-lang')); });
+    });
+    syncButtons(html.getAttribute('data-lang') || 'ja');
+  })();
+</script>
+
+</body>
+</html>

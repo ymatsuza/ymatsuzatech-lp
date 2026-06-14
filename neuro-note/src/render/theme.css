@@ -1,0 +1,338 @@
+/* NeuroNote ― レトロ教科書テーマ */
+:root {
+  --bg: #f4ecd8;
+  --grid: #e3d9c0;
+  --panel: #fbf7ec;
+  --ink: #3a3326;
+  --muted: #8a7f63;
+  --red: #c0392b;
+  --blue: #2c6e8f;
+  --line: #3a3326;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Courier New", ui-monospace, monospace;
+  color: var(--ink);
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+  -webkit-font-smoothing: antialiased;
+}
+
+#app { padding: 18px; }
+
+.nn-book {
+  position: relative;
+  max-width: 1040px;
+  margin: 0 auto;
+  background: var(--panel);
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 6px 6px 0 rgba(58, 51, 38, 0.12);
+  overflow: hidden;
+}
+
+.nn-homebtn {
+  font-family: inherit;
+  cursor: pointer;
+  background: var(--bg);
+  border: 1.5px solid var(--line);
+  border-radius: 3px;
+  color: var(--ink);
+  padding: 5px 10px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.nn-homebtn:hover { background: #efe7d2; }
+
+/* ── ホーム（章セレクト・マップ） ── */
+.nn-home {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+    var(--panel);
+  background-size: 24px 24px, 24px 24px, auto;
+  overflow: auto;
+  z-index: 10;
+}
+.nn-home.hidden { display: none; }
+.nn-home-inner { max-width: 760px; margin: 0 auto; padding: 26px 24px 30px; text-align: center; }
+.nn-home-title { font-size: 34px; font-weight: 700; letter-spacing: 1px; }
+.nn-home-sub { color: var(--muted); font-size: 13px; margin-top: 4px; }
+.nn-home-progress {
+  display: inline-block;
+  margin: 14px 0 18px;
+  font-size: 13px;
+  color: var(--red);
+  border-bottom: 2px solid var(--red);
+  padding-bottom: 2px;
+}
+.nn-chgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  text-align: left;
+}
+.nn-chcard {
+  font-family: inherit;
+  cursor: pointer;
+  background: #fff;
+  border: 2px solid var(--line);
+  border-radius: 6px;
+  padding: 12px 14px;
+  text-align: left;
+  transition: transform 0.1s ease;
+}
+.nn-chcard:hover:not(:disabled) { transform: translateY(-2px); background: #eef6fa; border-color: var(--blue); }
+.nn-chcard.cleared { background: #eef7f1; border-color: #2c8f5a; }
+.nn-chcard.open { box-shadow: 0 0 0 2px rgba(192, 57, 43, 0.2); }
+.nn-chcard.locked { opacity: 0.5; cursor: not-allowed; background: #f1ead8; }
+.nn-chnum { font-size: 12px; color: var(--muted); display: flex; justify-content: space-between; }
+.nn-chbadge { font-size: 13px; }
+.nn-chcard.cleared .nn-chbadge { color: #2c8f5a; }
+.nn-chtitle { font-weight: 700; font-size: 15px; margin-top: 3px; }
+.nn-chbest { font-size: 10px; color: var(--blue); margin-top: 4px; }
+.nn-home-foot { margin-top: 22px; }
+
+/* ── 上: 章・タイトル・メトリクス ── */
+.nn-top {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 12px 18px;
+  border-bottom: 2px solid var(--line);
+  background: repeating-linear-gradient(180deg, #fbf7ec, #fbf7ec 22px, #f3ecd8 22px, #f3ecd8 23px);
+}
+.nn-chapter {
+  font-weight: 700;
+  color: var(--red);
+  border-bottom: 2px solid var(--red);
+  white-space: nowrap;
+}
+.nn-title { font-weight: 700; font-size: 18px; flex: 1; }
+.nn-metrics { font-size: 12px; color: var(--muted); white-space: nowrap; }
+.nn-metrics b { color: var(--ink); }
+
+/* ── 本体: 中央 + 右サイド ── */
+.nn-main { display: flex; gap: 16px; padding: 16px 18px; align-items: flex-start; }
+.nn-stage { flex: 1; position: relative; min-width: 0; }
+.nn-side { flex: 0 0 250px; display: flex; flex-direction: column; gap: 12px; }
+
+.nn-goal {
+  font-size: 13px;
+  background: #fff;
+  border: 1.5px dashed var(--blue);
+  border-radius: 4px;
+  padding: 8px 12px;
+  margin-bottom: 12px;
+}
+.nn-goal b { color: var(--blue); }
+
+.nn-vizrow { display: flex; gap: 14px; flex-wrap: wrap; }
+.nn-panel {
+  background: #fff;
+  border: 2px solid var(--line);
+  border-radius: 4px;
+  padding: 8px;
+}
+.nn-panel .nn-cap { font-size: 10px; color: var(--muted); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 1px; }
+.nn-boundary { flex: 1 1 320px; }
+.nn-boundary canvas { width: 100%; height: auto; display: block; background: #fff; image-rendering: auto; }
+.nn-network { flex: 1 1 320px; }
+.nn-network svg { width: 100%; height: auto; display: block; }
+
+/* 損失グラフ・用語カード */
+.nn-side .nn-panel { padding: 8px 10px; }
+.nn-chart canvas { width: 100%; height: auto; display: block; }
+
+.nn-termcard {
+  background: #fff;
+  border: 2px dashed var(--blue);
+  border-radius: 4px;
+  padding: 10px 12px;
+  min-height: 92px;
+  font-size: 12px;
+  line-height: 1.5;
+  transition: transform 0.15s ease;
+}
+.nn-termcard.pop { animation: pop 0.4s ease; }
+@keyframes pop { 0% { transform: scale(0.92); } 50% { transform: scale(1.04); } 100% { transform: scale(1); } }
+.nn-termcard .nn-term { color: var(--blue); font-weight: 700; }
+.nn-termcard .nn-term .en { color: var(--muted); font-weight: 400; font-size: 11px; }
+.nn-termcard .nn-empty { color: var(--muted); }
+
+.nn-glossbtn, .nn-btn {
+  font-family: inherit;
+  cursor: pointer;
+  background: var(--panel);
+  border: 1.5px solid var(--line);
+  border-radius: 3px;
+  color: var(--ink);
+  padding: 6px 12px;
+  font-size: 13px;
+}
+.nn-btn:hover, .nn-glossbtn:hover { background: #efe7d2; }
+.nn-btn.primary { background: var(--red); color: #fff; border-color: var(--red); font-weight: 700; }
+.nn-btn.primary:hover { filter: brightness(1.08); }
+
+/* ── 下: コントロール ── */
+.nn-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  border-top: 2px solid var(--line);
+  background: #f3ecd8;
+}
+.nn-controls .spacer { flex: 1; }
+.nn-speed { display: inline-flex; border: 1.5px solid var(--line); border-radius: 3px; overflow: hidden; }
+.nn-speed button { border: none; background: var(--panel); padding: 6px 10px; font-family: inherit; cursor: pointer; border-left: 1px solid var(--line); }
+.nn-speed button:first-child { border-left: none; }
+.nn-speed button.active { background: var(--ink); color: var(--bg); }
+
+/* ── オーバーレイ（決断 / クリア / 発散） ── */
+.nn-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(244, 236, 216, 0.86);
+  border-radius: 4px;
+  z-index: 5;
+}
+.nn-overlay.hidden { display: none; }
+.nn-card {
+  background: var(--panel);
+  border: 2px solid var(--line);
+  border-radius: 6px;
+  padding: 18px 22px;
+  max-width: 460px;
+  box-shadow: 4px 4px 0 rgba(58, 51, 38, 0.15);
+}
+.nn-card h3 { margin: 0 0 6px; }
+.nn-card .prompt { font-size: 14px; margin-bottom: 14px; }
+.nn-options { display: flex; flex-direction: column; gap: 8px; }
+.nn-option {
+  text-align: left;
+  font-family: inherit;
+  cursor: pointer;
+  background: #fff;
+  border: 1.5px solid var(--line);
+  border-radius: 4px;
+  padding: 10px 12px;
+  font-size: 13px;
+}
+.nn-option:hover { background: #eef6fa; border-color: var(--blue); }
+.nn-option .opt-label { font-weight: 700; }
+.nn-option .opt-hint { color: var(--muted); font-size: 12px; }
+.nn-cleared-emoji { font-size: 34px; }
+
+.nn-diverge { color: var(--red); font-weight: 700; }
+
+/* 用語集モーダル */
+.nn-modal { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(58,51,38,0.4); z-index: 20; }
+.nn-modal.hidden { display: none; }
+.nn-modal .nn-card { max-height: 80vh; overflow: auto; max-width: 520px; }
+.nn-gloss-item { border-bottom: 1px dashed var(--grid); padding: 8px 0; font-size: 13px; }
+.nn-gloss-item .nn-term { color: var(--blue); font-weight: 700; }
+.nn-gloss-chapter { font-weight: 700; color: var(--red); margin: 14px 0 4px; padding-bottom: 2px; border-bottom: 1px solid var(--grid); font-size: 13px; }
+.nn-gloss-item.locked { color: var(--muted); opacity: 0.65; }
+
+/* ── ヘルプ ── */
+.nn-help { max-width: 480px; }
+.nn-help ul { list-style: none; padding: 0; margin: 8px 0 0; }
+.nn-help li { font-size: 13px; line-height: 1.6; padding: 6px 0; border-bottom: 1px dashed var(--grid); }
+
+/* ── トースト ── */
+.nn-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%) translateY(10px);
+  background: var(--ink);
+  color: var(--bg);
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 13px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+  z-index: 50;
+}
+.nn-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ── 手描きパッド（第7章） ── */
+.nn-draw { text-align: center; max-width: 460px; }
+.nn-draw-row { display: flex; gap: 20px; align-items: center; justify-content: center; margin-top: 8px; }
+.nn-draw-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 26px);
+  grid-template-rows: repeat(8, 26px);
+  gap: 2px;
+  background: var(--line);
+  padding: 2px;
+  border-radius: 4px;
+  touch-action: none;
+  user-select: none;
+}
+.nn-draw-grid .cell { background: #fbf7ec; border-radius: 2px; cursor: crosshair; }
+.nn-draw-grid .cell.on { background: var(--ink); }
+.nn-draw-out { min-width: 150px; }
+.nn-draw-pred { font-size: 52px; font-weight: 700; color: var(--blue); line-height: 1; }
+.nn-draw-cap { font-size: 11px; color: var(--muted); margin-bottom: 6px; }
+.nn-draw-bars { display: flex; flex-direction: column; gap: 2px; text-align: left; }
+.nn-draw-bar { display: flex; align-items: center; gap: 5px; font-size: 10px; color: var(--muted); }
+.nn-draw-bar i { display: inline-block; height: 8px; background: #cbb98f; border-radius: 1px; transition: width 0.1s; }
+
+/* ── レスポンシブ（スマホ・狭い画面） ── */
+@media (max-width: 760px) {
+  #app { padding: 8px; }
+  .nn-top { flex-wrap: wrap; row-gap: 4px; }
+  .nn-title { flex: 1 1 auto; }
+  .nn-metrics { flex-basis: 100%; }
+  .nn-main { flex-direction: column; padding: 12px; }
+  .nn-side { flex: 1 1 auto; width: 100%; }
+  .nn-boundary, .nn-network { flex: 1 1 100%; }
+  .nn-controls { flex-wrap: wrap; row-gap: 8px; }
+  .nn-controls .spacer { flex-basis: 100%; height: 0; }
+  .nn-draw-row { flex-wrap: wrap; }
+  .nn-home-title { font-size: 27px; }
+  .nn-card { max-width: 92vw; }
+}
+
+/* ── クリア演出 ── */
+@keyframes clearpop {
+  0% { transform: scale(0.8); opacity: 0; }
+  60% { transform: scale(1.05); }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes emojicheer {
+  0%, 100% { transform: rotate(0) scale(1); }
+  25% { transform: rotate(-12deg) scale(1.2); }
+  50% { transform: rotate(10deg) scale(1.25); }
+  75% { transform: rotate(-6deg) scale(1.1); }
+}
+.nn-cleared .nn-card { animation: clearpop 0.45s cubic-bezier(0.2, 1.2, 0.4, 1); }
+.nn-cleared-emoji { display: inline-block; animation: emojicheer 0.9s ease 0.15s; }
+
+@keyframes confetti-fall {
+  0% { transform: translateY(-20px) rotate(0); opacity: 1; }
+  100% { transform: translateY(340px) rotate(560deg); opacity: 0; }
+}
+.nn-confetti {
+  position: absolute;
+  top: 0;
+  width: 9px;
+  height: 9px;
+  border-radius: 1px;
+  pointer-events: none;
+  animation: confetti-fall 1.7s ease-in forwards;
+}

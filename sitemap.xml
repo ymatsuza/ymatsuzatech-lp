@@ -2,7 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://ymatsuzatech.com/</loc>
-    <lastmod>2026-06-12</lastmod>
+    <lastmod>2026-06-14</lastmod>
+  </url>
+  <url>
+    <loc>https://ymatsuzatech.com/gitmd.html</loc>
+    <lastmod>2026-06-14</lastmod>
+  </url>
+  <url>
+    <loc>https://ymatsuzatech.com/neuro-note/</loc>
+    <lastmod>2026-06-14</lastmod>
   </url>
   <url>
     <loc>https://ymatsuzatech.com/faq.html</loc>

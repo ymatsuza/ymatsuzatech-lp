@@ -1,0 +1,29 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" fill="#f4ecd8"/>
+  <g stroke="#e3d9c0" stroke-width="2">
+    <path d="M0 128H512M0 256H512M0 384H512M128 0V512M256 0V512M384 0V512" fill="none"/>
+  </g>
+  <!-- ニューラルネット -->
+  <g stroke-linecap="round">
+    <g stroke="#2c6e8f" stroke-opacity="0.55" stroke-width="6">
+      <line x1="150" y1="190" x2="256" y2="150"/>
+      <line x1="150" y1="190" x2="256" y2="256"/>
+      <line x1="150" y1="322" x2="256" y2="256"/>
+      <line x1="150" y1="322" x2="256" y2="362"/>
+    </g>
+    <g stroke="#c0392b" stroke-opacity="0.7" stroke-width="7">
+      <line x1="256" y1="150" x2="372" y2="256"/>
+      <line x1="256" y1="256" x2="372" y2="256"/>
+      <line x1="256" y1="362" x2="372" y2="256"/>
+    </g>
+  </g>
+  <g stroke="#3a3326" stroke-width="6">
+    <circle cx="150" cy="190" r="30" fill="#7ec8e3"/>
+    <circle cx="150" cy="322" r="30" fill="#7ec8e3"/>
+    <circle cx="256" cy="150" r="30" fill="#fbf7ec"/>
+    <circle cx="256" cy="256" r="30" fill="#fbf7ec"/>
+    <circle cx="256" cy="362" r="30" fill="#fbf7ec"/>
+  </g>
+  <circle cx="372" cy="256" r="34" fill="#c0392b" stroke="#3a3326" stroke-width="6"/>
+  <text x="256" y="452" font-family="Courier New, monospace" font-size="58" font-weight="700" fill="#3a3326" text-anchor="middle">NeuroNote</text>
+</svg>
