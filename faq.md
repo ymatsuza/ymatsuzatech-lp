@@ -1,5 +1,6 @@
 ---
 title: FAQ
+layout: default
 ---
 
 # GitMD FAQ
