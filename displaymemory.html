@@ -54,7 +54,87 @@
   .dm-shot .s4 { background: linear-gradient(135deg, #15724a, #06281a); }
   .dm-shot-cap { text-align: center; color: var(--muted); font-size: 0.9rem; margin-top: 14px; }
   @media (max-width: 600px) { .dm-shot .thumb { width: 84px; height: 54px; } .dm-shot .head .logo { display: none; } }
+
+  /* Comparison table */
+  .comparison { padding: 60px 0; }
+  .comp-wrap { overflow-x: auto; margin-top: 28px; }
+  .comp-table { width: 100%; border-collapse: collapse; font-size: 0.93rem; }
+  .comp-table th, .comp-table td { padding: 13px 16px; text-align: left; border-bottom: 1px solid var(--card-border); }
+  .comp-table thead th { background: var(--card-bg); font-weight: 600; }
+  .comp-table th:first-child { width: 40%; }
+  .comp-table .yes { color: #22c55e; font-weight: 600; }
+  .comp-table .no  { color: var(--muted); }
+
+  /* Pricing */
+  .pricing { padding: 60px 0; }
+  .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-top: 32px; }
+  .pricing-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 28px; position: relative; }
+  .pricing-card.featured { border-color: #2563eb; }
+  .pricing-card .badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #2563eb; color: #fff; font-size: 0.78rem; padding: 3px 12px; border-radius: 99px; white-space: nowrap; }
+  .pricing-card h3 { font-size: 1.25rem; margin-bottom: 8px; }
+  .pricing-card .price { font-size: 1.5rem; font-weight: 700; margin-bottom: 20px; }
+  .pricing-features { list-style: none; padding: 0; margin: 0 0 24px; }
+  .pricing-features li { padding: 6px 0 6px 22px; position: relative; font-size: 0.92rem; }
+  .pricing-features li::before { content: '✓'; position: absolute; left: 0; color: #22c55e; font-weight: 700; }
+
+  /* FAQ */
+  .faq { padding: 60px 0; }
+  .faq-list { margin-top: 28px; }
+  .faq-item { border-bottom: 1px solid var(--card-border); padding: 20px 0; }
+  .faq-item dt { font-weight: 600; margin-bottom: 8px; }
+  .faq-item dd { margin: 0; line-height: 1.75; color: var(--muted); }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "DisplayMemory",
+  "operatingSystem": "macOS, Windows",
+  "applicationCategory": "ProductivityApplication",
+  "description": "画面を自動キャプチャし、端末内OCRで全文検索できるタイムラインにするアプリ。Screen capture with on-device OCR and a full-text searchable timeline.",
+  "url": "https://ymatsuzatech.com/displaymemory.html",
+  "author": { "@type": "Person", "name": "Yuta Matsuzaki" },
+  "offers": [{ "@type": "Offer", "name": "Free", "price": "0", "priceCurrency": "USD" }]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "データはどこに保存されますか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "キャプチャ画像と読み取ったテキストはすべてあなたの端末内に保存されます。既定では外部サーバーへの送信は一切行いません。" }
+    },
+    {
+      "@type": "Question",
+      "name": "どのOSに対応していますか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "macOS と Windows に対応しています。現在開発中で、近日公開予定です。" }
+    },
+    {
+      "@type": "Question",
+      "name": "無料で使えますか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "画面キャプチャ・OCR・タイムライン・全文検索など基本機能は無料です。AI要約などの高度な機能は Pro プランで提供予定です。" }
+    },
+    {
+      "@type": "Question",
+      "name": "AI要約はどのように動きますか？",
+      "acceptedAnswer": { "@type": "Answer", "text": "AI要約はオプション機能で、ご自身の API キー（BYOK）を設定することで動作します。キーを設定しない限り有効になりません。" }
+    },
+    {
+      "@type": "Question",
+      "name": "Where is my data stored?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Both captured images and extracted text are stored only on your device. By default nothing is sent to any server." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it free?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Core features (screen capture, OCR, timeline, full-text search) are free. Advanced features such as AI summaries are planned for a Pro tier." }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -119,6 +199,31 @@
   </div>
 </section>
 
+<section class="comparison">
+  <div class="container">
+    <h2>クラウド型サービスとの違い</h2>
+    <div class="comp-wrap">
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>DisplayMemory</th>
+            <th>クラウド型の類似サービス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>データの保存先</td><td class="yes">端末内のみ</td><td class="no">クラウド（サービス側）</td></tr>
+          <tr><td>月額費用</td><td class="yes">基本機能は無料</td><td class="no">月額サブスクリプション</td></tr>
+          <tr><td>対応OS</td><td class="yes">macOS + Windows</td><td class="no">macOS のみが多い</td></tr>
+          <tr><td>アカウント登録</td><td class="yes">不要</td><td class="no">要登録</td></tr>
+          <tr><td>オフライン動作</td><td class="yes">完全対応</td><td class="no">要インターネット接続</td></tr>
+          <tr><td>AI要約</td><td class="yes">自分のAPIキーで選択可（BYOK）</td><td class="no">サービス側のAIのみ</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
 <section id="status-ja">
   <div class="container">
     <h2>開発状況</h2>
@@ -129,7 +234,7 @@
       <li><span class="ok">✓</span> 検索できるタイムライン</li>
       <li><span class="ok">✓</span> 配布版 Windows — <a href="downloads/displaymemory/DisplayMemory-windows-x64.zip" download>アルファ版 v0.1.0</a> 公開</li>
       <li><span class="ok">✓</span> 配布版 macOS — <a href="downloads/displaymemory/DisplayMemory-macos-universal.zip" download>アルファ版 v0.1.0</a> 公開</li>
-      <li><span class="soon">◷</span> 設定UI（間隔・保存期間・除外アプリ）</li>
+      <li><span class="ok">✓</span> 設定UI（キャプチャ間隔・保存期間・除外アプリ）</li>
       <li><span class="soon">◷</span> 任意のAI要約（自分のAPIキーを使用 / BYOK）</li>
     </ul>
     <p class="note">macOS / Windows とも署名前のアルファ版です。初回起動時に OS の警告が出ることがあります（macOS は右クリック →「開く」で起動できます）。</p>
@@ -175,6 +280,39 @@
   </div>
 </section>
 
+<section class="pricing">
+  <div class="container">
+    <h2>料金</h2>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <h3>Free</h3>
+        <p class="price">¥0</p>
+        <ul class="pricing-features">
+          <li>画面の自動キャプチャ</li>
+          <li>端末内OCR（日本語・英語ほか）</li>
+          <li>全文検索できるタイムライン</li>
+          <li>キャプチャ間隔・保存期間の設定</li>
+          <li>除外アプリの設定</li>
+        </ul>
+        <a class="btn primary" href="mailto:ymatsuza.tech@gmail.com?subject=DisplayMemory%20公開のお知らせ希望">公開のお知らせを受け取る</a>
+      </div>
+      <div class="pricing-card featured">
+        <div class="badge">近日公開</div>
+        <h3>Pro</h3>
+        <p class="price">公開時にお知らせ</p>
+        <ul class="pricing-features">
+          <li>Free の全機能</li>
+          <li>AIによる自動要約（BYOK）</li>
+          <li>長期保存・保存期間の延長</li>
+          <li>セマンティック検索（予定）</li>
+          <li>マルチディスプレイ拡張対応</li>
+        </ul>
+        <a class="btn ghost" href="mailto:ymatsuza.tech@gmail.com?subject=DisplayMemory%20Pro%20情報希望">Pro の情報を受け取る</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="donate">
   <div class="container">
     <h2>開発を支援する</h2>
@@ -183,6 +321,38 @@
       <a class="btn primary" href="https://github.com/sponsors/ymatsuza1128">GitHub Sponsors</a>
       <a class="btn ghost" href="https://paypal.me/ymatsuza">PayPal</a>
     </p>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="container">
+    <h2>よくある質問</h2>
+    <dl class="faq-list">
+      <div class="faq-item">
+        <dt>データはどこに保存されますか？</dt>
+        <dd>キャプチャ画像と読み取ったテキストは、すべてあなたの端末内に保存されます。既定では外部サーバーへの送信は一切行いません。</dd>
+      </div>
+      <div class="faq-item">
+        <dt>macOS と Windows、どちらに対応していますか？</dt>
+        <dd>両方に対応しています。現在開発中で、近日配布版を公開予定です。</dd>
+      </div>
+      <div class="faq-item">
+        <dt>無料で使えますか？</dt>
+        <dd>画面キャプチャ・OCR・タイムライン・全文検索などの基本機能は無料です。AI要約など高度な機能は Pro プランで提供予定です。</dd>
+      </div>
+      <div class="faq-item">
+        <dt>AI要約はどうやって使いますか？</dt>
+        <dd>AI要約はオプション機能です。Claude / OpenAI / Gemini など、ご自身が選んだサービスの API キー（BYOK）を設定することで動作します。キーを設定しない限り有効になりません。</dd>
+      </div>
+      <div class="faq-item">
+        <dt>ストレージをどのくらい使いますか？</dt>
+        <dd>キャプチャ間隔と保存期間によって変わります。設定画面で間隔を長くしたり保存期間を短くすることで使用容量を調整できます。</dd>
+      </div>
+      <div class="faq-item">
+        <dt>記録したくないアプリを除外できますか？</dt>
+        <dd>できます。設定画面で「記録しないアプリ」を指定することで、パスワードマネージャーや銀行アプリなど、キャプチャを避けたいアプリを登録できます。</dd>
+      </div>
+    </dl>
   </div>
 </section>
 
@@ -268,6 +438,31 @@
   </div>
 </section>
 
+<section class="comparison">
+  <div class="container">
+    <h2>How it compares</h2>
+    <div class="comp-wrap">
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>DisplayMemory</th>
+            <th>Cloud-based alternatives</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Data storage</td><td class="yes">On-device only</td><td class="no">Cloud (provider's servers)</td></tr>
+          <tr><td>Cost</td><td class="yes">Free for core features</td><td class="no">Monthly subscription</td></tr>
+          <tr><td>Platforms</td><td class="yes">macOS + Windows</td><td class="no">Often macOS-only</td></tr>
+          <tr><td>Account required</td><td class="yes">None</td><td class="no">Sign-up required</td></tr>
+          <tr><td>Works offline</td><td class="yes">Fully offline</td><td class="no">Requires connection</td></tr>
+          <tr><td>AI summaries</td><td class="yes">Your own key, your choice (BYOK)</td><td class="no">Provider AI only</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
 <section id="status-en">
   <div class="container">
     <h2>Development status</h2>
@@ -278,7 +473,7 @@
       <li><span class="ok">✓</span> Searchable timeline</li>
       <li><span class="ok">✓</span> Windows build — <a href="downloads/displaymemory/DisplayMemory-windows-x64.zip" download>alpha v0.1.0</a> released</li>
       <li><span class="ok">✓</span> macOS build — <a href="downloads/displaymemory/DisplayMemory-macos-universal.zip" download>alpha v0.1.0</a> released</li>
-      <li><span class="soon">◷</span> Settings UI (interval, retention, app exclusions)</li>
+      <li><span class="ok">✓</span> Settings UI (interval, retention, app exclusions)</li>
       <li><span class="soon">◷</span> Optional AI summaries (bring your own key / BYOK)</li>
     </ul>
     <p class="note">macOS and Windows are unsigned alpha builds — on first launch you may see an OS warning (on macOS, right-click → Open to run it).</p>
@@ -324,6 +519,39 @@
   </div>
 </section>
 
+<section class="pricing">
+  <div class="container">
+    <h2>Pricing</h2>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <h3>Free</h3>
+        <p class="price">$0</p>
+        <ul class="pricing-features">
+          <li>Automatic screen capture</li>
+          <li>On-device OCR (English, Japanese, and more)</li>
+          <li>Full-text searchable timeline</li>
+          <li>Capture interval &amp; retention settings</li>
+          <li>App exclusion list</li>
+        </ul>
+        <a class="btn primary" href="mailto:ymatsuza.tech@gmail.com?subject=DisplayMemory%20launch%20notification">Get launch updates</a>
+      </div>
+      <div class="pricing-card featured">
+        <div class="badge">Coming soon</div>
+        <h3>Pro</h3>
+        <p class="price">Announced at launch</p>
+        <ul class="pricing-features">
+          <li>Everything in Free</li>
+          <li>AI summaries (bring your own key)</li>
+          <li>Extended retention history</li>
+          <li>Semantic search (planned)</li>
+          <li>Multi-display Pro features</li>
+        </ul>
+        <a class="btn ghost" href="mailto:ymatsuza.tech@gmail.com?subject=DisplayMemory%20Pro%20info">Get Pro updates</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="donate">
   <div class="container">
     <h2>Support development</h2>
@@ -332,6 +560,38 @@
       <a class="btn primary" href="https://github.com/sponsors/ymatsuza1128">GitHub Sponsors</a>
       <a class="btn ghost" href="https://paypal.me/ymatsuza">PayPal</a>
     </p>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="container">
+    <h2>FAQ</h2>
+    <dl class="faq-list">
+      <div class="faq-item">
+        <dt>Where is my data stored?</dt>
+        <dd>Both the captured images and extracted text are stored only on your device. By default nothing is sent to any server.</dd>
+      </div>
+      <div class="faq-item">
+        <dt>Does it support macOS and Windows?</dt>
+        <dd>Yes, both macOS and Windows are supported. The app is currently in development and distributable builds are coming soon.</dd>
+      </div>
+      <div class="faq-item">
+        <dt>Is it free?</dt>
+        <dd>Core features — screen capture, OCR, timeline, and full-text search — are free. Advanced features like AI summaries are planned for a Pro tier.</dd>
+      </div>
+      <div class="faq-item">
+        <dt>How do AI summaries work?</dt>
+        <dd>AI summaries are optional. You bring your own API key (BYOK) for the service of your choice — Claude, OpenAI, Gemini, and others. Nothing is sent to any AI service until you set a key.</dd>
+      </div>
+      <div class="faq-item">
+        <dt>How much storage does it use?</dt>
+        <dd>It depends on your capture interval and retention period. You can tune both in Settings to find the right balance between storage and memory depth.</dd>
+      </div>
+      <div class="faq-item">
+        <dt>Can I exclude certain apps from capture?</dt>
+        <dd>Yes. In Settings you can add any app to an exclusion list — password managers, banking apps, or anything else you don't want recorded.</dd>
+      </div>
+    </dl>
   </div>
 </section>
 
