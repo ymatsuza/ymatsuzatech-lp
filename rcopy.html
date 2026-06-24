@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="ja" data-lang="ja">
+<head>
+<meta charset="utf-8" />
+<script async src="/assets/js/analytics.js"></script>
+<title>rcopy — 除外付きクロスプラットフォーム copy</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="rcopy は、gitignore 風の --exclude / --include が全 OS で同じに効く再帰コピー CLI。--dry-run で実行前プレビュー。Windows の Copy-Item -Recurse -Exclude 破綻・robocopy・rsync の隙間を埋めます。依存は typer だけ。" />
+<meta property="og:title" content="rcopy" />
+<meta property="og:description" content="除外付きクロスプラットフォーム copy。gitignore 風 --exclude/--include ＋ --dry-run。依存 1 つ。" />
+<meta property="og:image" content="https://ymatsuzatech.com/images/rcopy-icon.svg" />
+<meta property="og:url" content="https://ymatsuzatech.com/rcopy.html" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="rcopy" />
+<meta name="twitter:description" content="除外付きクロスプラットフォーム copy。gitignore 風 --exclude/--include ＋ --dry-run。依存 1 つ。" />
+<meta name="twitter:image" content="https://ymatsuzatech.com/images/rcopy-icon.svg" />
+<link rel="canonical" href="https://ymatsuzatech.com/rcopy.html" />
+<link rel="icon" type="image/svg+xml" href="images/rcopy-icon.svg" />
+<link rel="stylesheet" href="assets/styles.css" />
+<style>
+  .code-block {
+    background: var(--code-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 20px 24px;
+    overflow-x: auto;
+    margin: 16px 0;
+  }
+  .code-block pre {
+    margin: 0;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: var(--fg);
+    white-space: pre;
+  }
+  .code-block .c { color: var(--muted); }
+  .code-block .cmd { color: var(--accent); }
+  .install-steps { display: grid; gap: 16px; }
+  .step-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+</style>
+<script>
+  (function () {
+    try {
+      var s = localStorage.getItem('gitmd-lang');
+      if (s === 'en' || s === 'ja') {
+        document.documentElement.setAttribute('data-lang', s);
+        document.documentElement.setAttribute('lang', s);
+      }
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+
+<nav class="lang-switch" aria-label="Language / 言語">
+  <button type="button" data-lang="ja">日本語</button>
+  <button type="button" data-lang="en">English</button>
+</nav>
+
+<!-- ===================== 日本語 ===================== -->
+<div class="lang-content" lang="ja">
+
+<header class="hero">
+  <div class="container">
+    <img class="logo" src="images/rcopy-icon.svg" alt="rcopy アイコン" />
+    <h1>rcopy</h1>
+    <p class="tagline">除外付きクロスプラットフォーム copy</p>
+    <p class="platforms" aria-label="対応プラットフォーム">
+      <span>Windows</span><span>macOS</span><span>Linux</span>
+    </p>
+    <p class="lede">
+      gitignore 風の <code>--exclude</code> / <code>--include</code> が全 OS で同じに効く再帰コピー。
+      <code>--dry-run</code> で実行前にプレビュー。
+      Windows の <code>Copy-Item -Recurse -Exclude</code> 破綻・<code>robocopy</code>・<code>rsync</code> の隙間を、純 Python の 1 コマンドで埋めます。依存は <code>typer</code> だけ。
+    </p>
+    <p class="cta">
+      <a class="btn primary" href="https://github.com/ymatsuza/rcopy" target="_blank" rel="noopener">GitHub で見る</a>
+      <a class="btn ghost" href="#install-ja">インストール</a>
+    </p>
+  </div>
+</header>
+
+<section class="features">
+  <div class="container">
+    <h2>rcopy を選ぶ理由</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>除外が再帰でも正しく効く</h3>
+        <p>Windows の <code>Copy-Item -Recurse -Exclude</code> はサブディレクトリに除外が効かないことで有名。rcopy は全階層で正しく除外し、<code>node_modules</code> ひとつ指定すれば配下まるごと消えます。</p>
+      </div>
+      <div class="card">
+        <h3><code>--dry-run</code> で安全に</h3>
+        <p>コピー前に <code>src -&gt; dst</code> をすべて列挙してプレビュー。ディスクには一切触れません。「ちゃんと除外できているか」を実行前に確認できます。</p>
+      </div>
+      <div class="card">
+        <h3>gitignore 風パターン</h3>
+        <p><code>*.log</code>（任意階層）、<code>build/</code>（ディレクトリのみ）、<code>src/*.tmp</code>（アンカー）、<code>**</code> でディレクトリ跨ぎ。普段の <code>.gitignore</code> の感覚そのままです。</p>
+      </div>
+      <div class="card">
+        <h3><code>--exclude-from</code> で .gitignore を再利用</h3>
+        <p>既存の <code>.gitignore</code> をそのまま除外ルールとして読み込み。プロジェクトのバックアップが一発で取れます。</p>
+      </div>
+      <div class="card">
+        <h3><code>--include</code> 再包含 ／ <code>--no-clobber</code></h3>
+        <p>除外に引っかかったファイルを <code>--include</code> で拾い直す。<code>--no-clobber</code> で既存ファイルを上書きせずスキップ。<code>--no-recurse</code> でトップレベルのみ。</p>
+      </div>
+      <div class="card">
+        <h3>依存 1 つ、全 OS 同一</h3>
+        <p>依存は <code>typer</code> のみ、コピーは標準ライブラリ。<code>robocopy</code> も <code>rsync</code> も要らず、Windows / macOS / Linux で同じ挙動です。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="install-ja" class="download">
+  <div class="container">
+    <h2>インストール</h2>
+    <div class="install-steps">
+      <div>
+        <p class="step-label">手軽に：uv tool で 1 コマンド</p>
+        <div class="code-block"><pre><span class="cmd">uv tool install "git+https://github.com/ymatsuza/rcopy.git"</span></pre></div>
+      </div>
+      <div>
+        <p class="step-label">開発する：クローンして起動</p>
+        <div class="code-block"><pre><span class="cmd">git clone https://github.com/ymatsuza/rcopy.git &amp;&amp; cd rcopy
+uv sync
+uv run rcopy --help</span></pre></div>
+      </div>
+    </div>
+    <p class="note"><code>uv</code> が入っていない場合は <a href="https://docs.astral.sh/uv/" target="_blank" rel="noopener">astral.sh/uv</a> を参照してください。</p>
+  </div>
+</section>
+
+<section class="features">
+  <div class="container">
+    <h2>使い方</h2>
+
+    <h3 style="margin-top:0">除外してコピー（まず --dry-run）</h3>
+    <div class="code-block"><pre><span class="c"># gitignore 風の除外。実行前にプレビュー</span>
+<span class="cmd">rcopy ./project ./backup -e node_modules -e "*.log" -e "build/" --dry-run</span>
+
+<span class="c"># 問題なければそのまま実行（-v で各コピーを表示）</span>
+<span class="cmd">rcopy ./project ./backup -e node_modules -e "*.log" -e "build/" -v</span></pre></div>
+
+    <h3>.gitignore の再利用・再包含</h3>
+    <div class="code-block"><pre><span class="c"># 既存の .gitignore をそのまま除外ルールに</span>
+<span class="cmd">rcopy ./project ./backup --exclude-from .gitignore</span>
+
+<span class="c"># 除外に引っかかった特定ファイルだけ拾い直す</span>
+<span class="cmd">rcopy ./src ./dst -e "*.log" -i important.log</span></pre></div>
+
+    <h3>上書き制御・複数ソース</h3>
+    <div class="code-block"><pre><span class="c"># 既存ファイルは上書きしない / トップレベルのみ</span>
+<span class="cmd">rcopy ./src ./dst --no-clobber
+rcopy ./src ./dst --no-recurse</span>
+
+<span class="c"># 複数のソースをまとめてディレクトリへ</span>
+<span class="cmd">rcopy a.txt b.txt ./out/</span></pre></div>
+  </div>
+</section>
+
+<section class="backends">
+  <div class="container">
+    <h2>パターンの仕組み（gitignore 風）</h2>
+    <ul class="checklist">
+      <li><span class="ok">&#x2714;</span> <code>*.log</code>（スラッシュなし）&mdash; <strong>任意の階層</strong>の basename に一致</li>
+      <li><span class="ok">&#x2714;</span> <code>build/</code>（末尾スラッシュ）&mdash; <strong>ディレクトリのみ</strong>に一致</li>
+      <li><span class="ok">&#x2714;</span> <code>src/*.tmp</code> ・ <code>/dist</code>（スラッシュ含む）&mdash; ソースルートに<strong>アンカー</strong></li>
+      <li><span class="ok">&#x2714;</span> <code>**</code> はディレクトリを跨ぐ。<code>*</code>・<code>?</code> は <code>/</code> を跨がない</li>
+      <li><span class="ok">&#x2714;</span> 除外ディレクトリは<strong>剪定</strong>（配下ごとスキップ）。<code>--include</code> は除外より優先（剪定済みディレクトリ内は gitignore 同様に再包含不可）</li>
+    </ul>
+    <p>終了コードは <code>0</code>＝正常 / <code>1</code>＝一部コピー失敗 / <code>2</code>＝使い方エラー。スクリプトや CI から扱えます。</p>
+  </div>
+</section>
+
+<section class="donate">
+  <div class="container">
+    <h2>開発を支援する</h2>
+    <p>rcopy は個人開発の OSS ツールです。役に立てたらサポートをいただけると励みになります。</p>
+    <p style="margin-top:20px;">
+      <a class="btn primary" href="https://github.com/sponsors/ymatsuza1128">GitHub Sponsors</a>
+      <a class="btn ghost" href="https://paypal.me/ymatsuza">PayPal</a>
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2026 Yuta Matsuzaki. rcopy は OSS（ライセンスはリポジトリを参照）。本ページは ymatsuzatech.com の公開ランディングの一部です。 <a href="oss-tools.html">oss-tools コレクション</a>の一員です。</p>
+    <p>
+      <a href="profile.html">自己紹介</a> &middot;
+      <a href="privacy-policy.html">プライバシー</a> &middot;
+      <a href="faq.html">FAQ</a> &middot;
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScYyQolwD-83-JUnu-p8sfYY5WzsHtNr0s3JX3aifVP8n3A3g/viewform" target="_blank" rel="noopener">お問い合わせ</a>
+    </p>
+  </div>
+</footer>
+
+</div>
+<!-- =================== /日本語 =================== -->
+
+<!-- ===================== English ===================== -->
+<div class="lang-content" lang="en">
+
+<header class="hero">
+  <div class="container">
+    <img class="logo" src="images/rcopy-icon.svg" alt="rcopy icon" />
+    <h1>rcopy</h1>
+    <p class="tagline">Cross-platform copy with gitignore-style excludes</p>
+    <p class="platforms" aria-label="Supported platforms">
+      <span>Windows</span><span>macOS</span><span>Linux</span>
+    </p>
+    <p class="lede">
+      Recursive copy with gitignore-style <code>--exclude</code> / <code>--include</code> that work
+      the same on every OS, plus a <code>--dry-run</code> preview.
+      Fills the gaps in Windows <code>Copy-Item -Recurse -Exclude</code>, <code>robocopy</code>, and
+      <code>rsync</code> &mdash; in one pure-Python command. One dependency: <code>typer</code>.
+    </p>
+    <p class="cta">
+      <a class="btn primary" href="https://github.com/ymatsuza/rcopy" target="_blank" rel="noopener">View on GitHub</a>
+      <a class="btn ghost" href="#install-en">Install</a>
+    </p>
+  </div>
+</header>
+
+<section class="features">
+  <div class="container">
+    <h2>Why rcopy</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Excludes that work, even recursively</h3>
+        <p>Windows&rsquo; <code>Copy-Item -Recurse -Exclude</code> is famous for not applying excludes to subdirectories. rcopy excludes correctly at every depth &mdash; name <code>node_modules</code> once and the whole subtree is gone.</p>
+      </div>
+      <div class="card">
+        <h3>Safe by default with <code>--dry-run</code></h3>
+        <p>Preview every <code>src -&gt; dst</code> before touching the disk. See exactly what would be copied &mdash; and confirm your excludes are right &mdash; before you commit to it.</p>
+      </div>
+      <div class="card">
+        <h3>gitignore-style patterns</h3>
+        <p><code>*.log</code> (any depth), <code>build/</code> (directories only), <code>src/*.tmp</code> (anchored), and <code>**</code> across directories. It&rsquo;s the <code>.gitignore</code> mental model you already have.</p>
+      </div>
+      <div class="card">
+        <h3>Reuse your <code>.gitignore</code></h3>
+        <p><code>--exclude-from</code> reads any pattern file &mdash; point it at your project&rsquo;s <code>.gitignore</code> and back the whole thing up in one shot.</p>
+      </div>
+      <div class="card">
+        <h3><code>--include</code> &amp; <code>--no-clobber</code></h3>
+        <p>Re-include a file an exclude would drop with <code>--include</code>. Skip existing files with <code>--no-clobber</code>. Copy only the top level with <code>--no-recurse</code>.</p>
+      </div>
+      <div class="card">
+        <h3>One dependency, identical everywhere</h3>
+        <p>Just <code>typer</code>; copying uses the standard library. No <code>robocopy</code>, no <code>rsync</code> &mdash; the same behaviour on Windows, macOS, and Linux.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="install-en" class="download">
+  <div class="container">
+    <h2>Install</h2>
+    <div class="install-steps">
+      <div>
+        <p class="step-label">Quick: one command with uv tool</p>
+        <div class="code-block"><pre><span class="cmd">uv tool install "git+https://github.com/ymatsuza/rcopy.git"</span></pre></div>
+      </div>
+      <div>
+        <p class="step-label">For development: clone and run</p>
+        <div class="code-block"><pre><span class="cmd">git clone https://github.com/ymatsuza/rcopy.git &amp;&amp; cd rcopy
+uv sync
+uv run rcopy --help</span></pre></div>
+      </div>
+    </div>
+    <p class="note">Don&rsquo;t have <code>uv</code> yet? See <a href="https://docs.astral.sh/uv/" target="_blank" rel="noopener">astral.sh/uv</a>.</p>
+  </div>
+</section>
+
+<section class="features">
+  <div class="container">
+    <h2>Usage</h2>
+
+    <h3 style="margin-top:0">Copy with excludes (preview first)</h3>
+    <div class="code-block"><pre><span class="c"># gitignore-style excludes; preview before writing</span>
+<span class="cmd">rcopy ./project ./backup -e node_modules -e "*.log" -e "build/" --dry-run</span>
+
+<span class="c"># Looks good? Run it (-v prints each copy)</span>
+<span class="cmd">rcopy ./project ./backup -e node_modules -e "*.log" -e "build/" -v</span></pre></div>
+
+    <h3>Reuse .gitignore &amp; re-include</h3>
+    <div class="code-block"><pre><span class="c"># Use your existing .gitignore as the exclude rules</span>
+<span class="cmd">rcopy ./project ./backup --exclude-from .gitignore</span>
+
+<span class="c"># Pull one excluded file back in</span>
+<span class="cmd">rcopy ./src ./dst -e "*.log" -i important.log</span></pre></div>
+
+    <h3>Overwrite control &amp; multiple sources</h3>
+    <div class="code-block"><pre><span class="c"># Never overwrite existing files / top level only</span>
+<span class="cmd">rcopy ./src ./dst --no-clobber
+rcopy ./src ./dst --no-recurse</span>
+
+<span class="c"># Multiple sources into a directory</span>
+<span class="cmd">rcopy a.txt b.txt ./out/</span></pre></div>
+  </div>
+</section>
+
+<section class="backends">
+  <div class="container">
+    <h2>How patterns work (gitignore-style)</h2>
+    <ul class="checklist">
+      <li><span class="ok">&#x2714;</span> <code>*.log</code> (no slash) &mdash; matches that basename at <strong>any depth</strong></li>
+      <li><span class="ok">&#x2714;</span> <code>build/</code> (trailing slash) &mdash; matches <strong>directories only</strong></li>
+      <li><span class="ok">&#x2714;</span> <code>src/*.tmp</code> / <code>/dist</code> (contains a slash) &mdash; <strong>anchored</strong> to the source root</li>
+      <li><span class="ok">&#x2714;</span> <code>**</code> crosses directories; <code>*</code> and <code>?</code> do not cross <code>/</code></li>
+      <li><span class="ok">&#x2714;</span> An excluded directory is <strong>pruned</strong> (whole subtree skipped). <code>--include</code> overrides excludes (but cannot re-include inside a pruned directory &mdash; same as gitignore)</li>
+    </ul>
+    <p>Exit codes: <code>0</code> success / <code>1</code> some files failed / <code>2</code> usage error &mdash; scriptable and CI-friendly.</p>
+  </div>
+</section>
+
+<section class="donate">
+  <div class="container">
+    <h2>Support development</h2>
+    <p>rcopy is a free, open-source tool built in personal time. Sponsorships are greatly appreciated.</p>
+    <p style="margin-top:20px;">
+      <a class="btn primary" href="https://github.com/sponsors/ymatsuza1128">GitHub Sponsors</a>
+      <a class="btn ghost" href="https://paypal.me/ymatsuza">PayPal</a>
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2026 Yuta Matsuzaki. rcopy is open source; see the repository for license details. This page is part of the ymatsuzatech.com public landing &mdash; one of the <a href="oss-tools.html">oss-tools</a> collection.</p>
+    <p>
+      <a href="profile.html">About</a> &middot;
+      <a href="privacy-policy.html">Privacy</a> &middot;
+      <a href="faq.html">FAQ</a> &middot;
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScYyQolwD-83-JUnu-p8sfYY5WzsHtNr0s3JX3aifVP8n3A3g/viewform" target="_blank" rel="noopener">Contact</a>
+    </p>
+  </div>
+</footer>
+
+</div>
+<!-- =================== /English =================== -->
+
+<script>
+  (function () {
+    var html = document.documentElement;
+    var btns = Array.prototype.slice.call(document.querySelectorAll('.lang-switch button'));
+    function syncButtons(l) {
+      btns.forEach(function (b) {
+        var on = b.getAttribute('data-lang') === l;
+        b.classList.toggle('active', on);
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+    }
+    function setLang(l) {
+      html.setAttribute('data-lang', l);
+      html.setAttribute('lang', l);
+      syncButtons(l);
+      try { localStorage.setItem('gitmd-lang', l); } catch (e) {}
+    }
+    btns.forEach(function (b) {
+      b.addEventListener('click', function () { setLang(b.getAttribute('data-lang')); });
+    });
+    syncButtons(html.getAttribute('data-lang') || 'ja');
+  })();
+</script>
+
+</body>
+</html>
